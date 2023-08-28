@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt|Source+Code+Pro:300,400,600" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #3c373e;
+      color: #E0E0DE;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      min-height: 100vh;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      font-family: 'Raleway';
+    }
+
+    .payment-title {
+      width: 100%;
+      text-align: center;
+    }
+
+    .form-container .field-container:first-of-type {
+      grid-area: name;
+    }
+
+    .form-container .field-container:nth-of-type(2) {
+      grid-area: number;
+    }
+
+    .form-container .field-container:nth-of-type(3) {
+      grid-area: expiration;
+    }
+
+    .form-container .field-container:nth-of-type(4) {
+      grid-area: security;
+    }
+
+    .field-container input {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    .field-container {
+      position: relative;
+    }
+
+    .form-container {
+      display: grid;
+      grid-column-gap: 10px;
+      grid-template-columns: auto auto;
+      grid-template-rows: 90px 60px 90px 80px;
+      grid-template-areas: "name name""name name""number number""expiration security";
+      max-width: 400px;
+      padding: 20px;
+      color: #E0E0DE;
+    }
+
+    label {
+      padding-bottom: 5px;
+      font-size: 13px;
+    }
+
+    input {
+      margin-top: 3px;
+      padding: 15px;
+      font-size: 16px;
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid #dcdcdc;
+    }
+
+    a {
+      color:#E0E0DE;
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease;
+    }
+
+    a:hover {
+      text-decoration: none !important;}
+
+    header {
+      padding: 1rem 0;
+      font-size: 20px;
+      float: right;
+      color: #E0E0DE;
+      padding-right: 10px;
+    }
+
+    header a:hover {
+      color: #FA9F0D;
+      text-decoration: none !important;}
+
+  </style>
+
+    <title>Payment</title>
+</head>
+<body>
+<header> <a class = "shopping-cart" href="shopping-cart.html"> <-- Back to Shopping Cart </a> </header>
+<div class="payment-title">
+  <h1>Payment Information</h1>
+  <div id="payment_error_message" style="color: red;"></div>
+</div>
+
+<div class="form-container">
+  <form id="payment_form" method="post" action="#">
+    <div id= "pass_value"></div>
+  <div class="field-container">
+    <label for="firstName">First Name</label>
+    <input id="firstName" name = "firstName" maxlength="20" type="text" required>
+    <label for="lastName">Last Name</label>
+    <input id="lastName" name = "lastName" maxlength="20" type="text" required>
+  </div>
+  <div class="field-container">
+    <label for="cardnumber">Card Number</label>
+    <input id="cardnumber" name = "cardnumber" type="text" pattern="[0-9]*" inputmode="numeric" required>
+  </div>
+  <div class="field-container">
+    <label for="expDate">Expiration (mm/dd/yy)</label>
+    <input id="expDate" name = "expDate" type="date" required>
+  </div>
+  <div class="field-container">
+    <input type="submit" id="submit" value="Checkout">
+  </div>
+  </form>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="payment.js"></script>
+</html>

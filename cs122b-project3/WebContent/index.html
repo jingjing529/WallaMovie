@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" />
+
+  <style>
+    /*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
+    h1 {
+      padding: 3rem 0;
+      /*line-height: 170px;*/
+      text-align: center;
+      font-size: 120px;
+      font-weight: 600;
+      font-family: 'Niconne', cursive;
+      color: #E0E0DE;
+      text-shadow: 2px 2px 0px  #435269,
+      6px 6px 0px #3c373e,
+      8px 8px 0px #FA9F0D;
+      /*10px 10px 0px #435269;*/
+    }
+
+    body {
+      font-family: "Lato";
+      background-color: #3c373e;
+      font-weight: 300;
+      color: #E0E0DE;
+      /*padding-top: 300px;*/
+    }
+
+    .search {
+      width: 100%;
+      position: relative;
+      display: inherit;
+      align-content: center;
+
+    }
+
+
+
+
+    .searchTerm {
+      width: 100%;
+      border: 3px solid #FA9F0D;
+      padding: 5px;
+      height: 20px;
+      border-radius: 5px 5px 5px 5px;
+      color: #FA9F0D;
+      padding: 7px;
+      font-family: "Lato";
+      margin: 10px;
+    }
+
+    .searchTermRow {
+      width: 30%;
+      border: 3px solid #FA9F0D;
+      padding: 5px;
+      height: 20px;
+      border-radius: 5px 5px 5px 5px;
+      color: #FA9F0D;
+      padding: 7px;
+      font-family: "Lato";
+      margin: 10px;
+    }
+    .searchContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .searchRow {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+
+    .searchTerm:focus{
+      color: #FA9F0D;
+      font-family: "Lato";
+    }
+
+    .searchButton {
+      width: 83px;
+      height: 37px;
+      font-family: "Lato";
+      border: 1px solid #FA9F0D;
+      background: #FA9F0D;
+      text-align: center;
+      color: #fff;
+      border-radius: 5px 5px 5px 5px;
+      cursor: pointer;
+      font-size: 19px;
+    }
+
+    /*Resize the wrap to see the search bar change!*/
+    .wrap{
+      width: 80%;
+      position: relative;
+      /*top: 60%;*/
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .wrap1{
+      width: 80%;
+      position: relative;
+      /*top: 60%;*/
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .nav-container,.tabs {
+      display: flex;
+      justify-content: center
+    }
+
+    .nav-container {
+      font-family: "Lato";
+      color: #E0E0DE;
+      padding-bottom: 25px
+    }
+
+    .nav-container a {
+      padding: 10px 30px;
+      color: #E0E0DE;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 16px;
+      display: inline-block;
+      font-weight: 700
+    }
+
+    .hid-mob details a:active,.nav-container a:hover,details a:active {
+      background: #FA9F0D;
+      color: #3c373e
+    }
+
+    .nav-container .tabs {
+      flex-wrap: wrap;
+      max-width: 1000px;
+      background: #3c373e
+    }
+
+    .nav-container .input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .nav-container .label {
+      padding: 7px 7px 20px;
+      margin: 5px;
+      background: #3c373e;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: #E0E0DE
+    }
+
+    .nav-container .label:hover {
+      border-bottom: 4px solid #FA9F0D
+    }
+
+    .nav-container .input:focus+.label {
+      z-index: 1
+    }
+
+    .nav-container .input:checked+.label {
+      border-bottom: 4px solid #FA9F0D
+    }
+
+    .nav-container .panel {
+      display: none;
+      text-align: center;
+      background: #3c373e;
+      margin-top: 20px;
+      width: 100%
+    }
+
+    .nav-container .input:checked+.label+.panel {
+      display: block
+    }
+
+    .nav-container .label {
+      width: auto
+    }
+
+    .nav-container .panel {
+      order: 99
+    }
+
+
+    /*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
+    a {
+      color:#777;
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease;
+    }
+
+    a:hover {
+      text-decoration: none !important;}
+
+    .header_nav{
+      font-family: Bradley Hand;
+      /*width: 100%;*/
+      margin: 0;
+    }
+
+    .header_nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      top: 0;
+      left: 0;
+      position: fixed;
+      overflow: hidden;
+      background-color: #333;
+      width: 100%;
+    }
+
+    .header_nav li {
+      font-family: Bradley Hand;
+      float: left;
+    }
+
+    .header_nav li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .header_nav li a:hover {
+      background-color: #111;
+    }
+    .autocomplete-suggestions {
+      background-color: white;
+      color: black;
+      border: 1px solid #FA9F0D;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid #999;
+      overflow: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: all 0.2s ease-in-out;
+    }
+    .autocomplete-suggestions .autocomplete-suggestion:hover {
+      background-color: #ddd; /* change background color */
+      cursor: pointer;
+    }
+
+    /* change background color For selected item */
+    .autocomplete-suggestions .autocomplete-suggestion.autocomplete-selected {
+      background-color: #b2d7ff;
+    }
+
+
+
+  </style>
+
+</head>
+<body>
+
+<div class = "header_nav">
+  <nav class="header">
+    <ul class="header-right" id = "home"></ul>
+  </nav>
+</div>
+
+<div>
+  <h1>Walla Movie Store</h1>
+</div>
+
+
+<div class="wrap">
+  <div class="search">
+    <form id="search" class="searchContainer">
+      <input type="text" class="searchTerm title" placeholder="Search Movie By Title" name="sort_title" id="autocomplete">
+      <div class="searchRow">
+        <input type="text" class="searchTermRow year" placeholder="Year" name="sort_year" inputmode="numeric">
+        <input type="text" class="searchTermRow director" placeholder="Director" name="sort_director">
+        <input type="text" class="searchTermRow starname" placeholder="Star's Name" name="sort_name">
+      </div>
+      <button type="submit" class="searchButton" value="Search">
+        <i class="fa fa-search">Search</i>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="nav-container">
+  <div class="tabs">
+    <input checked="checked" class="input" id="tab-1" name="tabs" type="radio">
+    <label class="label" for="tab-1">Browse by Genre</label>
+    <div class="panel" id = "genre_body"></div>
+    <!--    for loop-->
+    <input class="input"
+           id="tab-2" name="tabs" type="radio">
+    <label class="label" for="tab-2">Browse by Alphanumeric</label>
+    <div class="panel" id = "alpha_body"></div>
+    <!--    for loop-->
+  </div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
